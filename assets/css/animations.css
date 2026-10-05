@@ -1,0 +1,362 @@
+/* ------------------------------------------------------------------ */
+/*  Animations — Nova Agency                                           */
+/*  Utilitaires d'animation, kinetic typography, parallax, reveal.    */
+/*  Respecte prefers-reduced-motion via base.css (règle globale).     */
+/* ------------------------------------------------------------------ */
+
+/* ================================================================
+   SPLIT TEXT UTILITY (Kinetic Typography)
+   -------------------------------
+   Utiliser sur les titres : <span class="split-text">Mot Mot Mot</span>
+   Le JS (animations.js) scinde le texte en mots/lettres et anime.
+   Fallback : texte normal si JS indisponible ou animation réduite.
+   ================================================================ */
+
+.split-text {
+  display: inline-block;
+  line-height: 1.1;
+}
+
+.split-text-word {
+  display: inline-block;
+  opacity: 0;
+  transform-origin: 50% 1.4em;
+}
+
+.split-text-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+}
+
+.split-text-visible .split-text-word,
+.split-text-visible .split-text-letter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variante : apparition par vagues horizontales */
+.split-text--wave .split-text-word {
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+.split-text--wave .split-text-word.is-visible {
+  animation: wave-in 0.7s var(--ease-out) forwards;
+}
+
+@keyframes wave-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Variante : glissement vertical (magazine reveal) */
+.split-text--slide .split-text-letter {
+  opacity: 0;
+  transform: translateY(1.5em);
+}
+
+.split-text--slide .split-text-letter.is-visible {
+  animation: slide-in 0.75s var(--ease-out) forwards;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================================================
+   PARALLAX UTILITIES
+   -------------------------------
+   data-parallax sur un élément → mouvement vertical à la scroll
+   data-parallax-factor: vitesse (0.1 = lent, 1.0 = même vitesse)
+   ================================================================ */
+
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ================================================================
+   REVEAL ON SCROLL (amplifie motion.css .reveal)
+   -------------------------------
+   .reveal-in: standard bottom-up
+   .reveal-in--fade: simple fondu
+   .reveal-in--slide: glissement depuis la gauche
+   .reveal-in--slide-right: glissement depuis la droite
+   .reveal-in--scale: agrandissement doux
+   ================================================================ */
+
+.reveal-in {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.7s var(--ease-out),
+              transform 0.7s var(--ease-out);
+}
+
+.reveal-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-in--fade {
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-out);
+}
+
+.reveal-in--fade.is-visible {
+  opacity: 1;
+}
+
+.reveal-in--slide {
+  opacity: 0;
+  transform: translateX(-2rem);
+  transition: opacity 0.7s var(--ease-out),
+              transform 0.7s var(--ease-out);
+}
+
+.reveal-in--slide.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-in--slide-right {
+  opacity: 0;
+  transform: translateX(2rem);
+  transition: opacity 0.7s var(--ease-out),
+              transform 0.7s var(--ease-out);
+}
+
+.reveal-in--slide-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-in--scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.7s var(--ease-out),
+              transform 0.7s var(--ease-out);
+}
+
+.reveal-in--scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ================================================================
+   HOVER / MICRO-INTERACTION UTILITIES
+   ---------------------------------------------------
+   .hover-lift: carte qui se soulève
+   .hover-zoom: image qui zoome
+   .hover-glow: lueur dorée au survol
+   .hover-arrow: flèche qui pointe
+   ================================================================ */
+
+.hover-lift {
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) ease;
+}
+
+.hover-lift:hover,
+.hover-lift:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px var(--color-shadow-strong);
+}
+
+.hover-zoom {
+  overflow: hidden;
+}
+
+.hover-zoom img {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.hover-zoom:hover img,
+.hover-zoom:focus-within img {
+  transform: scale(1.08);
+}
+
+.hover-glow {
+  position: relative;
+  transition: color var(--dur-fast) ease;
+}
+
+.hover-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 1px var(--color-gold);
+  opacity: 0;
+  transition: opacity var(--dur-fast) ease;
+  pointer-events: none;
+}
+
+.hover-glow:hover::before,
+.hover-glow:focus-visible::before {
+  opacity: 0.85;
+}
+
+.hover-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: gap var(--dur-fast) ease;
+}
+
+.hover-arrow:hover {
+  gap: var(--space-3);
+}
+
+/* ================================================================
+   LOADING / SKELETON STATES
+   -------------------------------
+   .skeleton: bloc de chargement
+   .skeleton--text, .skeleton--image, .skeleton--button
+   ================================================================ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-elevated) 25%,
+    var(--color-bg-surface) 50%,
+    var(--color-bg-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s var(--ease-out) infinite;
+  border-radius: var(--radius);
+}
+
+.skeleton--text {
+  height: 1em;
+}
+
+.skeleton--image {
+  aspect-ratio: 16 / 9;
+}
+
+.skeleton--button {
+  width: 8rem;
+  height: 2.5rem;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ================================================================
+   CURSOR FOLLOWER (subtil, optionnel)
+   -------------------------------
+   .cursor-follower: petit cercle or qui suit la souris
+   ================================================================ */
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.15s var(--ease-out);
+  will-change: transform, left, top;
+}
+
+.cursor-follower.is-visible {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cursor-follower.is-hover {
+  transform: translate(-50%, -50%) scale(1.8);
+  background-color: var(--color-gold-glow);
+  border-color: transparent;
+}
+
+/* ================================================================
+   UTILITAIRES DE TEXTE
+   -------------------------------
+   .text-gold, .text-gold-bright (déjà dans base.css)
+   .letter-space: espacement lettres personnalisé
+   .line-clamp: nombre de lignes maximal
+   ================================================================ */
+
+.letter-space-sm {
+  letter-spacing: 0.03em;
+}
+
+.letter-space-md {
+  letter-spacing: 0.06em;
+}
+
+.letter-space-lg {
+  letter-spacing: 0.1em;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ================================================================
+   RESPONSIVE + REDUCED MOTION
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .split-text-word,
+  .split-text-letter,
+  .split-text--wave .split-text-word,
+  .split-text--slide .split-text-letter,
+  .reveal-in,
+  .reveal-in--fade,
+  .reveal-in--slide,
+  .reveal-in--slide-right,
+  .reveal-in--scale,
+  [data-parallax],
+  .cursor-follower,
+  .skeleton,
+  .hover-lift,
+  .hover-zoom img,
+  .hover-glow::before {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+}
