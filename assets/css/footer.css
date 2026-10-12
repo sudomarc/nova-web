@@ -153,6 +153,17 @@
   font-size: 0.9rem;
 }
 
+.site-footer__credit a {
+  color: var(--color-text-muted-on-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.site-footer__credit a:hover,
+.site-footer__credit a:focus-visible {
+  color: var(--color-gold);
+}
+
 .site-footer__legal-links {
   display: flex;
   flex-wrap: wrap;
