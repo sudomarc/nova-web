@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Sudomarc">
   <title>Nova Agency — Communication · Publicité · Talents</title>
-  <meta name="description" content="Nova Agency : agence de communication, publicité et accompagnement des talents. Création de publicités, communication digitale, mise à disposition de talents, production audiovisuelle et formation.">
+  <meta name="description" content="Nova Agency, agence de communication, publicité et accompagnement des talents. Création publicitaire, digital, production audiovisuelle et formation. Site web conçu par Sudomarc.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="Nova Agency">
   <meta property="og:title" content="Nova Agency — Communication · Publicité · Talents">
-  <meta property="og:description" content="Nova Agency : agence de communication, publicité et accompagnement des talents. Création, digital, talents, production, formation.">
+  <meta property="og:description" content="Nova Agency : communication, publicité, talents, production et formation. Site web conçu par Sudomarc.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nova Agency — Communication · Publicité · Talents">
-  <meta name="twitter:description" content="Nova Agency : agence de communication, publicité et accompagnement des talents.">
+  <meta name="twitter:description" content="Nova Agency : communication, publicité et talents. Site web conçu par Sudomarc.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +30,38 @@
   <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/motion.js" defer></script>
   <script src="assets/js/services.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://github.com/sudomarc#person",
+        "name": "Sudomarc",
+        "url": "https://github.com/sudomarc",
+        "sameAs": [
+          "https://github.com/sudomarc"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "name": "Nova Agency"
+      },
+      {
+        "@type": "WebSite",
+        "name": "Nova Agency",
+        "description": "Site vitrine de Nova Agency : communication, publicité et accompagnement des talents.",
+        "creator": {
+          "@id": "https://github.com/sudomarc#person"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Nova Agency"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="home-page">
   <!-- Header injecté par includes.js à partir de partials/header.html. -->
