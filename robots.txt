@@ -1,6 +1,7 @@
-# Nova Web — robots.txt
-# Sitemap et URL canoniques : à compléter uniquement avec une URL publique vérifiée
-# (pas d'URL inventée). Voir ROADMAP T21 / T27.
+# Nova Agency public website
+# Only verified public pages are listed in the sitemap.
 
 User-agent: *
 Allow: /
+
+Sitemap: https://nova-agency-nu.vercel.app/sitemap.xml

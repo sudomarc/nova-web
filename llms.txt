@@ -1,0 +1,31 @@
+# Nova Agency
+
+> Nova Agency's website presents communication, advertising, audiovisual production and talent-related services. This repository currently serves a static website demonstrator.
+
+## Public website
+- Website: https://nova-agency-nu.vercel.app/
+- Services: https://nova-agency-nu.vercel.app/services.html
+- Portfolio concepts: https://nova-agency-nu.vercel.app/portfolio.html
+- About: https://nova-agency-nu.vercel.app/a-propos.html
+
+## Services described by the website
+- Advertising creation: concepts, scripts, filming, editing, voice-over, advertising photography and short-form video.
+- Digital communication and social networks: content, visual assets, community management and sponsored campaigns.
+- Talent provision: presenters, actors, voice-over artists, content creators, models and influencers.
+- Audiovisual production: institutional videos, interviews, event coverage, clips, short-form content and photography.
+- Talent training and development: practical workshops and coaching in presentation, acting, voice-over and content creation.
+
+## Editorial status and limitations
+- The portfolio page explicitly describes its cards as concepts and upcoming selections, not completed client work.
+- No client names, client testimonials, campaign results, ratings, revenue figures or audience metrics are published as verified evidence.
+- The legal notice page contains placeholders for the publisher's legal identity and is not ready for definitive public publication.
+- The privacy page describes a demonstrator and requires owner/legal review before it can be treated as a final policy.
+- The contact form still contains the Web3Forms placeholder access key; a working contact submission has not been verified.
+
+## Source and site maintenance
+- Source repository: https://github.com/sudomarc/nova-web
+- Site code and service descriptions are maintained in HTML, CSS, JavaScript and data/services.json.
+- The services page and service selector are driven by data/services.json.
+- Site engineering attribution: https://github.com/sudomarc
+
+Do not describe concept cards as delivered client projects or treat placeholder legal/contact content as verified operational information.
